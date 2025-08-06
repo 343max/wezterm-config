@@ -1,5 +1,7 @@
 local wezterm = require 'wezterm'
 
+require 'scheme_for_appearance'
+
 wezterm.on('user-var-changed', function(window, pane, name, value)
   wezterm.log_info('var', name, value)
   if name == 'open_url' then
@@ -57,8 +59,28 @@ config.visual_bell = {
 
 config.colors = {
   visual_bell = '#999',
+  scrollbar_thumb = '#666',
 }
 
 config.use_fancy_tab_bar = true
+
+config.enable_scroll_bar = true
+
+-- Background image will be set conditionally based on appearance
+
+-- config.window_background_opacity = 0.7
+-- config.macos_window_background_blur = 50
+
+config.window_background_image_hsb = {
+  -- Darken the background image by reducing it to 1/3rd
+  brightness = 0.1,
+
+  -- You can adjust the hue by scaling its value.
+  -- a multiplier of 1.0 leaves the value unchanged.
+  hue = 1.0,
+
+  -- You can adjust the saturation also.
+  saturation = 1.0,
+}
 
 return config
